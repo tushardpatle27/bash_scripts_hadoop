@@ -1,0 +1,2 @@
+rm: cannot remove '/home/ec2-user/tdss/hbase': No such file or directory
+rm: cannot remove '2': No such file or directory

@@ -1,0 +1,20 @@
+[req]
+default_bit = 4096
+distinguished_name = req_distinguished_name
+prompt = no
+
+[req_distinguished_name]
+countryName             = IN
+stateOrProvinceName     = Karnataka
+localityName            = Bengaluru
+organizationName        = Tookitaki
+commonName              = ip-13-0-0-120.ec2.internal
+commonName              = ip-13-0-0-120.ec2.internal
+commonName              = ip-13-0-0-120.ec2.internal
+commonName              = ip-13-0-0-120.ec2.internal
+commonName              = ip-13-0-0-120.ec2.internal
+commonName              = ip-13-0-0-120.ec2.internal
+commonName              = ip-13-0-0-120.ec2.internal
+commonName              = ip-13-0-0-120.ec2.internal
+commonName              = ip-13-0-0-120.ec2.internal
+commonName              = ip-13-0-0-120.ec2.internal

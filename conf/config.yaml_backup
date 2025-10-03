@@ -1,0 +1,145 @@
+INSTALL_DIRECTORY=/home/ec2-user
+##------------------------------------#
+##********************************** JAVA  ********************************
+JAVA_SERVERS_IP= 13.0.0.24
+JAVA_SERVERS_USERNAME=ec2-user
+JAVA_AUTH_MECH=KEY
+JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-1.el7_9.x86_64/jre
+JAVA_SERVER_KEY_LOCATION=/home/ec2-user/.ssh/id_rsa
+JAVA_SERVER_PASSWORD=null
+#
+###********************************** TOMCAT  ********************************
+##
+TOMCAT_SERVERS_IP= 13.0.0.24
+TOMCAT_SERVER_USERNAME=ec2-user
+TOMCAT_AUTH_MECH=KEY
+TOMCAT_SERVER_KEY_LOCATION=/home/ec2-user/.ssh/id_rsa
+TOMCAT_SERVER_PASSWORD=null
+TOMCAT_PORT=8081
+##
+##
+###***************************** APACHE PROXY SERVER *************************
+##
+PROXY_SERVERS= 13.0.0.24
+PROXY_SERVER_USERNAME=ec2-user
+PROXY_AUTH_MECH=KEY
+PROXY_SERVER_KEY_LOCATION=/home/ec2-user/.ssh/id_rsa
+PROXY_SERVER_PASSWORD=NULL
+
+#***************HADOOP*********************
+HADOOP_SERVERS: 13.0.0.248,13.0.0.151,13.0.0.10
+
+# HA or NON-HA
+HADOOP_CLUSTER_TYPE: HA
+
+# HA cluster name
+HADOOP_CLUSTER_NAME: apachehadooptest
+#------------------------------------#
+## Hadoop servers' access details
+
+# Hadoop sever's 'username' (Common username for both Master and Slaves)
+HADOOP_SERVER_USERNAME: ec2-user
+
+# Hadoop server's 'access token type'
+# PASS - if password; KEY - if access via key file; NOKEY - if access key is not required
+HADOOP_SERVER_AUTH_MECH: KEY
+
+# Hadoop server's 'access token'
+# enter password - if 'PASS'; enter key file path - if 'KEY'; enter 'NIL' if 'NOKEY'
+HADOOP_SERVER_AUTH_TKN: /home/ec2-user/.ssh/id_rsa
+
+#------------------------------------#
+## Master server details
+
+HADOOP_MASTER_SERVER: 13.0.0.248
+HADOOP_HA_MASTER_SERVERS: 13.0.0.248,13.0.0.151,13.0.0.10
+
+#------------------------------------#
+## Slave server details
+
+HADOOP_WORKERS_SERVERS: 13.0.0.248,13.0.0.151,13.0.0.10
+
+#------------------------------------#
+## Name node, Data node, Temporary dir and JournalNode edits dir
+
+# namenode dir
+HADOOP_META_DIR: /home/ec2-user/tdss/app-data/hadoop/namenode
+
+# datanode dir
+HADOOP_DATA_DIR: /home/ec2-user/tdss/datanode
+
+# temorary dir
+HADOOP_TEMP_DIR: /home/ec2-user/tdss/app-data/hadoop/tmp
+
+# edits dir
+HADOOP_EDITS_DIR: /home/ec2-user/tdss/app-data/hadoop/edits
+
+# JornalNode edits dir - [ For HA only ]
+HADOOP_JN_E_DIR: /home/ec2-user/tdss/jn
+
+#------------------------------------#
+## Under which dir Spark jars has to be pushed in HDFS
+# hdfs dir
+SPARK_JARS_HDFS_DIR: /tookitaki
+
+# -------------------------------------------------- < ZOOKEEPER > -------------------------------------------------- #
+## Zookeeper will be installed in 'HADOOP_HA_MASTER_SERVERS'
+
+# Zookeeper data dir
+ZOOKEEPER_DATA_DIR: /home/ec2-user/tdss/zookeeper/data
+
+# -------------------------------------------------- < HIVE > -------------------------------------------------- #
+HIVE_METASTORE_DB: hivetestscript
+HIVE_METASTORE_SERVERS: 13.0.0.248,13.0.0.151
+# -------------------------------------------------- < MYSQL > -------------------------------------------------- #
+
+DATABASE_SERVER_IP: devopssanity210-server.cqyx9zsuwjgd.us-east-1.rds.amazonaws.com
+DATABASE_SERVER_USERNAME: ec2-user
+DATABASE_SERVER_AUTH_MECH: KEY
+DATABASE_SERVER_AUTH_TKN: /home/ec2-user/.ssh/id_rsa
+DATABASE_USERNAME: admin
+DATABASE_PASSWORD: Test123!!
+DATABASE_NAME: tdss
+DATABASE_PORT: 3306
+
+# -------------------------------------------------- < HBASE  > -------------------------------------------------- #
+
+
+HBASE_SERVER_IP=13.0.0.248,13.0.0.151,13.0.0.10
+HBASE_SERVER_USERNAME=ec2-user
+HBASE_SERVER_AUTH_MECH=KEY
+HBASE_SERVER_AUTH_TKN=/home/ec2-user/.ssh/id_rsa
+HBASE_MASTER_IP=13.0.0.248
+HBASE_REGION_IP=13.0.0.151,13.0.0.10
+HBASE_BACKUP_MASTERS=13.0.0.151
+HBASE_REGION_USERNAME=ec2-user
+HBASE_ZOOKEEPER_DATA_DIR=/home/ec2-user/tdss/hbase/hbase_zookeeper
+
+###********************************** ELASTICSEARCH  *******************************##
+
+ES_MASTER_SERVERS_IP=13.0.0.58
+ES_CLUSTER_INITIAL=ES_MASTER_NODE
+ES_DATANODE_SERVERS_IP=13.0.0.180
+ES_SERVER_USERNAME=ec2-user
+ES_AUTH_MECH=KEY
+ES_SERVER_KEY_LOCATION=/home/ec2-user/.ssh/id_rsa
+ES_SERVER_PASSWORD=null
+ES_PORT=9200
+ES_CLUSTERNAME=NS-IAD-ES-Test
+ES_MASTERNODE=true
+ES_DATANODE=true
+ES_PATH_DATA=/home/ec2-user/tdss/elastic_data
+
+
+###************************** KIBANA *****************************************************##
+
+KIBANA_SERVERS_IP= 13.0.0.24
+KIBANA_SERVER_USERNAME=ec2-user
+KIBANA_AUTH_MECH=KEY
+KIBANA_SERVER_KEY_LOCATION=/home/ec2-user/.ssh/id_rsa
+KIBANA_SERVER_PASSWORD=null
+KIBANA_NETWORKHOST=$KIBANA_SERVERS_IP
+KIBANA_PORT=5601
+ELASTIC_CLUSTER_NAME=["http://13.0.0.99:9200"]
+KIBANA_SEREVER_NAME="ip-13-0-0-99.ec2.internal"
+

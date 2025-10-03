@@ -1,0 +1,49 @@
+<configuration>
+  <property>
+    <name>hbase.rootdir</name>
+    <value>hdfs:///devcluster/hbase</value>
+  </property>
+
+  <property>
+    <name>hbase.cluster.distributed</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>hbase.zookeeper.quorum</name>
+    <value>13.0.0.248,13.0.0.151,13.0.0.10</value>
+  </property>
+  <property>
+    <name>hbase.zookeeper.property.clientPort</name>
+    <value>2181</value>
+  </property>
+
+  <property>
+    <name>hbase.zookeeper.property.dataDir</name>
+    <value>$zoodatadir</value>
+  </property>
+
+
+  <property>
+    <name>hbase.regionserver.port</name>
+    <value>16020</value>
+  </property>
+
+  <property>
+    <name>hbase.regionserver.info.port</name>
+    <value>60020</value>
+  </property>
+
+  <property>
+  <name>phoenix.schema.isNamespaceMappingEnabled</name>
+  <value>true</value>
+</property>
+  <property>
+  <name>hbase.regionserver.wal.codec</name>
+  <value>org.apache.hadoop.hbase.regionserver.wal.IndexedWALEditCodec</value>
+</property>
+
+<property>
+  <name>hbase.wal.provider</name>
+  <value>filesystem</value>
+</property>
+</configuration>

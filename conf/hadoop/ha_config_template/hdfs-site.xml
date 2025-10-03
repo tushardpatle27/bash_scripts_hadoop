@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+       Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+<property>
+<name>dfs.replication</name>
+<value>3</value>
+</property>
+
+<property>
+<name>dfs.namenode.name.dir</name>
+<value>#NAMENODE_DIR#</value>
+</property>
+
+<property>
+<name>dfs.datanode.data.dir</name>
+<value>#DATANODE_DIR#</value>
+</property>
+
+<property>
+<name>dfs.journalnode.edits.dir</name>
+<value>#HADOOP_JN_E_DIR#</value>
+</property>
+
+
+
+<property>
+<name>dfs.webhdfs.enabled</name>
+<value>true</value>
+</property>
+
+<property>
+<name>dfs.permissions</name>
+<value>false</value>
+</property>
+
+<property>
+<name>dfs.namenode.datanode.registration.ip-hostname-check</name>
+<value>false</value>
+</property>
+
+<property>
+<name>dfs.client.socket-timeout</name>
+<value>300000000</value>
+</property>
+
+<property>
+<name>ipc.server.handler.queue.size</name>
+<value>3300</value>
+</property>
+
+<property>
+<name>dfs.datanode.handler.count</name>
+<value>60</value>
+</property>
+
+<property>
+<name>dfs.namenode.accesstime.precision</name>
+<value>-1</value>
+</property>
+
+<property>
+<name>dfs.datanode.socket.write.timeout</name>
+<value>7200000</value>
+</property>
+
+
+<property>
+<name>dfs.client.use.datanode.hostname</name>
+<value>true</value>
+<description>Whether clients should use datanode hostnames when connecting to datanodes.</description>
+</property>
+
+<property>
+<name>dfs.datanode.use.datanode.hostname</name>
+<value>true</value>
+<description>Whether datanodes should use datanode hostnames when connecting to other datanodes for data transfer.</description>
+</property>
+
+<property>
+<name>dfs.nameservices</name>
+<value>#HADOOP_CLUSTER_NAME#</value>
+</property>
+
+<property>
+<name>dfs.ha.namenodes.#HADOOP_CLUSTER_NAME#</name>
+<value>#HADOOP_ALL_NAMENODES#</value>
+</property>
+
+#HADOOP_NN_RPC_ADDRESS#
+
+#HADOOP_NN_HTTP_ADDRESS#
+
+<property>
+<name>dfs.client.failover.proxy.provider.#HADOOP_CLUSTER_NAME#</name>
+<value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+</property>
+
+<property>
+<name>dfs.ha.automatic-failover.enabled</name>
+<value>true</value>
+</property>
+
+<property>
+<name>dfs.ha.fencing.ssh.private-key-files</name>
+<value>/home/ec2-user/.ssh/id_rsa</value>
+</property>
+
+
+
+<property>
+<name>dfs.ha.fencing.methods</name>
+<value>shell(/bin/true)</value>
+</property>
+
+
+</configuration>

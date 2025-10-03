@@ -1,0 +1,42 @@
+<configuration>
+
+<property>
+<name>javax.jdo.option.ConnectionURL</name>
+<value>jdbc:mysql://devopssanity210-server.cqyx9zsuwjgd.us-east-1.rds.amazonaws.com:3306/hivetestscript2?createDatabaseIfNotExist=true</value>
+<description>metadata is stored in a MySQL server</description>
+</property>
+
+<property>
+<name>javax.jdo.option.ConnectionDriverName</name>
+<value>com.mysql.jdbc.Driver</value>
+<description>MySQL JDBC driver class</description>
+</property>
+
+<property>
+<name>javax.jdo.option.ConnectionUserName</name>
+<value>admin</value>
+<description>user name for connecting to mysql server</description>
+</property>
+
+<property>
+<name>javax.jdo.option.ConnectionPassword</name>
+<value>Test123!!</value>
+<description>password for connecting to mysql server</description>
+</property>
+
+<property>
+<name>datanucleus.autoCreateSchema</name>
+<value>true</value>
+</property>
+
+<property>
+<name>datanucleus.fixedDatastore</name>
+<value>true</value>
+</property>
+
+<property>
+<name>datanucleus.autoCreateTables</name>
+<value>True</value>
+</property>
+
+</configuration>

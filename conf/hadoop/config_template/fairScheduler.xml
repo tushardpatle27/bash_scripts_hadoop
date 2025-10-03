@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<allocations>
+  <queue name="default">
+    <minResources>10000 mb,1 vcores</minResources>
+    <maxResources>440000 mb,15 vcores</maxResources>
+    <maxRunningApps>50</maxRunningApps>
+    <maxAMShare>0.5</maxAMShare>
+    <weight>2.0</weight>
+    <schedulingPolicy>fair</schedulingPolicy>
+    <aclSubmitApps>*</aclSubmitApps>
+    <aclAdministerApps>*</aclAdministerApps>
+  </queue>
+</allocations>
+

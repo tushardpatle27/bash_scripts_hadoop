@@ -1,0 +1,101 @@
+#!/bin/bash
+
+source ~/.bashrc
+
+# INSTALL_DIRECTORY will be udated by ../bin/hadoop_setup.sh
+INSTALL_DIRECTORY=/home/ec2-user
+
+set -e
+## Install Hive
+cd $HOME
+mkdir -p "$INSTALL_DIRECTORY/tdss"
+if [[ ! -d "$INSTALL_DIRECTORY/tdss/hive" ]]; then
+	echo "Installing Hive under $INSTALL_DIRECTORY/tdss"
+	# untar hive
+	tar -xf apache-hive*.tar.gz
+	# move
+	tar_file=$(ls | grep apache-hive*.tar.gz)
+    tar_file_final=${tar_file//.tar.gz/}
+	mv "$tar_file_final" "$INSTALL_DIRECTORY/tdss/hive"
+
+	# # untar derby
+	# tar -xf db-derby*.tar.gz
+	# # move
+	# tar_file=$(ls | grep db-derby*.tar.gz)
+	# tar_file_final=${tar_file//.tar.gz/}
+	# mv "$tar_file_final" "$INSTALL_DIRECTORY/tdss/hive/derby"
+else
+    echo "Hive already installed" 
+    
+    # Clear files (already placed by ../bin/hive_setup.sh)
+	echo "Removing unecessary files"
+	rm apache-hive*.tar.gz
+	#rm db-derby*.tar.gz
+	rm mysql-connector-java.jar
+	rm hive-site.xml
+	rm jpox.properties
+    exit;
+fi
+
+# clear bashrc
+sed -i '/HIVE/d' ~/.bashrc
+# sed -i '/DERBY/d' ~/.bashrc
+
+# update bashrc
+echo "Updating '~/.bashrc'"
+echo "" >> ~/.bashrc
+echo "# Added by installer - HIVE" >> ~/.bashrc
+echo "export HIVE_HOME=$INSTALL_DIRECTORY/tdss/hive" >> ~/.bashrc
+echo "export PATH=\$PATH:\$HIVE_HOME/bin:\$PATH" >> ~/.bashrc
+echo "" >> ~/.bashrc
+# echo "export CLASSPATH=\$CLASSPATH:\$DERBY_HOME/lib/derby.jar:\$DERBY_HOME/lib/derbytools.jar" >> ~/.bashrc
+echo "export CLASSPATH=\$CLASSPATH:\$HADOOP_HOME/lib/*:." >> ~/.bashrc
+echo "export CLASSPATH=\$CLASSPATH:\$HIVE_HOME/lib/*:." >> ~/.bashrc
+echo "" >> ~/.bashrc
+# echo "export DERBY_HOME=\$HIVE_HOME/derby" >> ~/.bashrc
+# echo "export PATH=\$PATH:\$DERBY_HOME/bin" >> ~/.bashrc
+source ~/.bashrc
+
+# make data dir for derby
+# mkdir $DERBY_HOME/data
+
+# update hive-site.xml and jpox
+echo "Updating Hive config files and libs"
+cp hive-site.xml $HIVE_HOME/conf/
+cp jpox.properties $HIVE_HOME/conf/
+cp mysql-connector-java.jar $HIVE_HOME/lib/
+
+# Clear files
+echo "Removing unecessary files"
+rm apache-hive*.tar.gz
+#rm db-derby*.tar.gz
+rm mysql-connector-java.jar
+rm hive-site.xml
+rm jpox.properties
+
+# make support dirs in HDFS
+echo "Creating support dirs in HDFS"
+
+hdfs dfs -mkdir -p /user/hive/warehouse
+hdfs dfs -chmod g+w /user/hive/warehouse
+hdfs dfs -mkdir -p /tmp
+hdfs dfs -chmod g+w /tmp
+
+# Initialize Hive
+echo "Initializing Hive Schema - MySQL"
+cd $HIVE_HOME/
+# sh ./schematool -dbType derby -initSchema
+sh ./bin/schematool -dbType mysql -initSchema
+
+# Start metastore
+echo "Starting Hive metastore"
+nohup ./bin/hive --service metastore > curr_log_file 2>&1 &
+sleep 5
+cat curr_log_file
+# pid_num=$(ps -ef | grep hive | grep ./bin/hive | tail -1 | awk '{print $2}')
+pid_num=$(ps -ef | grep hive | grep metastore | awk '{print $2}')
+echo "Hive Metastore running on PID - '$pid_num'"
+
+cd $HOME
+set +e
+

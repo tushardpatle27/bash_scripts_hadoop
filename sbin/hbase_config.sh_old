@@ -1,0 +1,32 @@
+{ # try
+hadoopmaster=`grep "\<HADOOP_CLUSTER_NAME\>" ../conf/config.yaml  | sed s/.*://g`
+zooservers=`grep "\<HADOOP_HA_MASTER_SERVERS\>" ../conf/config.yaml  | sed s/.*://g`
+zoodatadir=`grep "\<ZOOKEEPER_DATA_DIR\>" ../conf/config.yaml  | sed s/.*://g`
+
+hadoopmaster=${hadoopmaster//[[:space:]]/}
+zooservers=${zooservers//[[:space:]]/}
+zoodatadir=${zoodatadir//[[:space:]]/}
+
+eval "cat <<EOF
+$(<../conf/hbase/config_template/master/hbase-site.xml)
+EOF
+" | tee ../conf/hbase/generated_hbase_config/master/hbase-site.xml
+sed -i -e 's,//,/,g' ../conf/hbase/generated_hbase_config/master/hbase-site.xml
+
+} || { # catch
+    echo "Error! unable to create MASTER hbase-site.xml for deployment as specified in conf file"
+    echo $?
+    exit 1
+}
+{
+eval "cat <<EOF
+$(<../conf/hbase/config_template/slave/hbase-site.xml)
+EOF
+" | tee ../conf/hbase/generated_hbase_config/slave/hbase-site.xml
+sed -i -e 's,//,/,g' ../conf/hbase/generated_hbase_config/slave/hbase-site.xml
+
+} || { # catch
+    echo "Error! unable to create SLAVE hbase-site.xml for deployment as specified in conf file"
+    echo $?
+    exit 1
+}

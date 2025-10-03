@@ -1,0 +1,106 @@
+INSTALL_DIRECTORY=/home/ec2-user
+
+##********************************** JAVA  ********************************
+
+JAVA_SERVERS_IP: 13.0.0.120,13.0.0.202,13.0.0.239
+JAVA_SERVERS_USERNAME: ec2-user
+JAVA_AUTH_MECH: KEY
+JAVA_SERVER_KEY_LOCATION: /home/ec2-user/.ssh/id_rsa
+JAVA_SERVER_PASSWORD: null
+
+###********************************** TOMCAT  ********************************
+
+TOMCAT_SERVER_USERNAME: ec2-user
+TOMCAT_AUTH_MECH: KEY
+TOMCAT_SERVER_KEY_LOCATION: /home/ec2-user/.ssh/id_rsa
+TOMCAT_SERVER_PASSWORD: null
+TOMCAT_PORT: 8081
+
+#***************HADOOP*********************
+HADOOP_SERVERS: 13.0.0.120,13.0.0.202,13.0.0.239
+
+# HA or NON-HA
+HADOOP_CLUSTER_TYPE: HA
+
+# HA cluster name
+HADOOP_CLUSTER_NAME: apachehadooptest
+#------------------------------------#
+## Hadoop servers' access details
+
+# Hadoop sever's 'username' (Common username for both Master and Slaves)
+HADOOP_SERVER_USERNAME: ec2-user
+
+# Hadoop server's 'access token type'
+# PASS - if password; KEY - if access via key file; NOKEY - if access key is not required
+HADOOP_SERVER_AUTH_MECH: KEY
+
+# Hadoop server's 'access token'
+# enter password - if 'PASS'; enter key file path - if 'KEY'; enter 'NIL' if 'NOKEY'
+HADOOP_SERVER_AUTH_TKN: /home/ec2-user/.ssh/id_rsa
+
+#------------------------------------#
+## Master server details
+
+HADOOP_MASTER_SERVER: 13.0.0.120
+HADOOP_HA_MASTER_SERVERS: 13.0.0.120,13.0.0.202,13.0.0.239
+
+#------------------------------------#
+## Slave server details
+
+HADOOP_WORKERS_SERVERS: 13.0.0.120,13.0.0.202,13.0.0.239
+
+#------------------------------------#
+## Name node, Data node, Temporary dir and JournalNode edits dir
+
+# namenode dir
+HADOOP_META_DIR: /home/ec2-user/tdss/app-data/hadoop/namenode
+
+# datanode dir
+HADOOP_DATA_DIR: /home/ec2-user/tdss/datanode
+
+# temorary dir
+HADOOP_TEMP_DIR: /home/ec2-user/tdss/app-data/hadoop/tmp
+
+# edits dir
+HADOOP_EDITS_DIR: /home/ec2-user/tdss/app-data/hadoop/edits
+
+# JornalNode edits dir - [ For HA only ]
+HADOOP_JN_E_DIR: /home/ec2-user/tdss/jn
+
+#------------------------------------#
+## Under which dir Spark jars has to be pushed in HDFS
+# hdfs dir
+SPARK_JARS_HDFS_DIR: /tookitaki
+
+# -------------------------------------------------- < ZOOKEEPER > -------------------------------------------------- #
+## Zookeeper will be installed in 'HADOOP_HA_MASTER_SERVERS'
+
+# Zookeeper data dir
+ZOOKEEPER_DATA_DIR: /home/ec2-user/tdss/zookeeper/data
+
+# -------------------------------------------------- < HIVE > -------------------------------------------------- #
+HIVE_METASTORE_DB: hivetestscript2
+HIVE_METASTORE_SERVERS: 13.0.0.120,13.0.0.202
+# -------------------------------------------------- < MYSQL > -------------------------------------------------- #
+
+DATABASE_SERVER_IP: devopssanity210-server.cqyx9zsuwjgd.us-east-1.rds.amazonaws.com
+DATABASE_SERVER_USERNAME: ec2-user
+DATABASE_SERVER_AUTH_MECH: KEY
+DATABASE_SERVER_AUTH_TKN: /home/ec2-user/.ssh/id_rsa
+DATABASE_USERNAME: admin
+DATABASE_PASSWORD: Test123!!
+DATABASE_NAME: tdss
+DATABASE_PORT: 3306
+
+# -------------------------------------------------- < HBASE  > -------------------------------------------------- #
+
+
+HBASE_SERVER_IP: 13.0.0.120,13.0.0.202,13.0.0.239
+HBASE_SERVER_USERNAME: ec2-user
+HBASE_SERVER_AUTH_MECH: KEY
+HBASE_SERVER_AUTH_TKN: /home/ec2-user/.ssh/id_rsa
+HBASE_MASTER_IP: 13.0.0.120
+HBASE_REGION_IP: 13.0.0.202,13.0.0.239
+HBASE_BACKUP_MASTERS: 13.0.0.202
+HBASE_REGION_USERNAME: ec2-user
+HBASE_ZOOKEEPER_DATA_DIR: /home/ec2-user/tdss/hbase/hbase_zookeeper
